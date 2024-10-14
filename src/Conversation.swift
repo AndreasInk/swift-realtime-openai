@@ -20,29 +20,29 @@ public final class Conversation: Sendable {
 		self.client = client
 		(errors, errorStream) = AsyncStream.makeStream(of: ServerError.self)
 
-		let task = Task.detached { [weak self] in
-			guard let self else { return }
+		// let task = Task.detached { [weak self] in
+		// 	guard let self else { return }
 
-			for try await event in client.events {
-				await self.handleEvent(event)
-			}
+		// 	for try await event in client.events {
+		// 		await self.handleEvent(event)
+		// 	}
 
-			await MainActor.run {
-				self.connected = false
-			}
-		}
+		// 	await MainActor.run {
+		// 		self.connected = false
+		// 	}
+		// }
 
-		Task { @MainActor in
-			self.cancelTask = task.cancel
+		// Task { @MainActor in
+		// 	self.cancelTask = task.cancel
 
-			client.onDisconnect = { [weak self] in
-				guard let self else { return }
+		// 	client.onDisconnect = { [weak self] in
+		// 		guard let self else { return }
 
-				Task { @MainActor in
-					self.connected = false
-				}
-			}
-		}
+		// 		Task { @MainActor in
+		// 			self.connected = false
+		// 		}
+		// 	}
+		// }
 	}
 
 	deinit {
@@ -114,7 +114,7 @@ public final class Conversation: Sendable {
 	}
 }
 
-private extension Conversation {
+public extension Conversation {
 	@MainActor func handleEvent(_ event: ServerEvent) {
 		switch event {
 			case let .error(event):
