@@ -6,7 +6,7 @@ public enum ConversationError: Error {
 
 @Observable
 public final class Conversation: Sendable {
-	private let client: RealtimeAPI
+    public let client: RealtimeAPI
 	@MainActor private var cancelTask: (() -> Void)?
 	private let errorStream: AsyncStream<ServerError>.Continuation
 
