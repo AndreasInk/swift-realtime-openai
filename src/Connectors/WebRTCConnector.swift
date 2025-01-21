@@ -1,3 +1,4 @@
+#if !os(macOS)
 @preconcurrency import WebRTC
 import Foundation
 #if canImport(FoundationNetworking)
@@ -132,3 +133,4 @@ extension WebRTCConnector: RTCDataChannelDelegate {
 		print("Data channel changed to \(dataChannel.readyState)")
 	}
 }
+#endif
