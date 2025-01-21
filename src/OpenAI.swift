@@ -49,7 +49,7 @@ extension RealtimeAPI {
 		return webSocket(connectingTo: request)
 	}
 
-#if !os(macOS)
+#if os(iOS)
     /// Connect to the OpenAI WebRTC Realtime API with the given request.
     static func webRTC(connectingTo request: URLRequest) async throws -> RealtimeAPI {
         try RealtimeAPI(connector: await WebRTCConnector(connectingTo: request))

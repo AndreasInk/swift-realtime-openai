@@ -1,4 +1,4 @@
-#if !os(macOS)
+#if os(iOS)
 @preconcurrency import WebRTC
 import Foundation
 #if canImport(FoundationNetworking)

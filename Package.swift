@@ -22,7 +22,7 @@ let package = Package(
         .target(
             name: "OpenAI",
             dependencies: [
-                .product(name: "WebRTC", package: "WebRTC", condition: .when(platforms: [.iOS, .tvOS, .visionOS, .macCatalyst]))
+                .product(name: "WebRTC", package: "WebRTC", condition: .when(platforms: [.iOS]))
             ],
             path: "./src"
         ),
